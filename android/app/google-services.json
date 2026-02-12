@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "713792125410",
+    "project_id": "flxmarket",
+    "storage_bucket": "flxmarket.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713792125410:android:460aef28f6723a752ba1bb",
+        "android_client_info": {
+          "package_name": "com.example.flx_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713792125410-bc24t80flnf689eleigsbooa6obhncpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flx_market",
+            "certificate_hash": "95d66bf2683f3452f0434c406e46220b6af699af"
+          }
+        },
+        {
+          "client_id": "713792125410-gjt1v7je90f76rs4rmjlpvte8rmp9rd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBz9W__2uoMbiRshIAEOq12TgM7A8RfpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713792125410-gjt1v7je90f76rs4rmjlpvte8rmp9rd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "713792125410-omb21pmidd4e35okvh0s8rgasppuoqjq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flxMarket"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
