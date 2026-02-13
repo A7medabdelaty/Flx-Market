@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flx_market/Core/extensions/build_context_extension.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_state.dart';
+import 'package:flx_market/Services/chat/presentation/pages/chat_with_admin_page.dart';
 import 'package:flx_market/Services/home/presentation/bloc/home_bloc.dart';
 import 'package:flx_market/Services/home/presentation/bloc/home_state.dart';
 import 'package:flx_market/Services/products/presentation/bloc/products_bloc.dart';
@@ -13,9 +14,6 @@ import 'package:flx_market/Services/wishlist/presentation/bloc/wishlist_bloc.dar
 import 'package:flx_market/Services/wishlist/presentation/bloc/wishlist_event.dart';
 import 'package:flx_market/Services/wishlist/presentation/bloc/wishlist_state.dart';
 import 'package:flx_market/Services/wishlist/presentation/widgets/wishlist_button.dart';
-import 'package:flx_market/Services/products/presentation/bloc/products_bloc.dart';
-import 'package:flx_market/Services/products/presentation/bloc/products_event.dart';
-import 'package:flx_market/Services/products/presentation/pages/products_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,8 +35,6 @@ class HomeView extends StatelessWidget {
                 children: [
                   _buildHeader(context),
                   const SizedBox(height: 20),
-                  // _buildSearchBar(context),
-                  // const SizedBox(height: 20),
                   const Text(
                     'Popular Categories',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -295,31 +291,18 @@ class HomeView extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.chat_bubble_outline, color: Colors.grey[600]),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChatWithAdminPage(),
+                  ),
+                );
+              },
             ),
           ],
         );
       },
-    );
-  }
-
-  Widget _buildSearchBar(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: 'Search here...',
-        prefixIcon: Icon(Icons.search, color: Colors.grey[400]),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade200),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade200),
-        ),
-      ),
     );
   }
 }
