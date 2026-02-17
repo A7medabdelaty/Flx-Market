@@ -45,20 +45,7 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
         return AuthPageContainer(
           heading: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new, size: 18),
-                  color: Colors.black,
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-              Image.asset(AssetsPaths.logo, height: 40),
-            ],
+            children: [Container(), Image.asset(AssetsPaths.logo, height: 40)],
           ),
           topContent: Column(
             children: [
@@ -89,7 +76,8 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
                 style: TextStyle(color: Colors.black87),
               ),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(context, RouteConstants.register),
+                onTap: () =>
+                    Navigator.pushNamed(context, RouteConstants.register),
                 child: Text(
                   'Sign up here',
                   style: TextStyle(
@@ -106,7 +94,10 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
             children: [
               const Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Email Address', style: TextStyle(color: Colors.black87)),
+                child: Text(
+                  'Email Address',
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
               const SizedBox(height: 8),
               AuthTextField(
@@ -124,7 +115,10 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Password', style: TextStyle(color: Colors.black87)),
+                  const Text(
+                    'Password',
+                    style: TextStyle(color: Colors.black87),
+                  ),
                   GestureDetector(
                     onTap: () => Navigator.pushNamed(
                       context,

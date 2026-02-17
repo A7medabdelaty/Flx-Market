@@ -8,7 +8,6 @@ class User {
   final DateTime createdAt;
   final UserRole role;
   String? profileImage;
-  List<String>? medicalHistory;
 
   User({
     required this.id,
@@ -18,7 +17,6 @@ class User {
     required this.createdAt,
     this.role = UserRole.user,
     this.profileImage,
-    this.medicalHistory,
   });
 
   User copyWith({
@@ -39,7 +37,6 @@ class User {
       createdAt: createdAt ?? this.createdAt,
       role: role ?? this.role,
       profileImage: profileImage ?? this.profileImage,
-      medicalHistory: medicalHistory ?? this.medicalHistory,
     );
   }
 
@@ -52,7 +49,6 @@ class User {
       'createdAt': createdAt.toIso8601String(),
       'role': role.toMap(),
       'profileImage': profileImage,
-      'medicalHistory': medicalHistory,
     };
   }
 
@@ -65,7 +61,6 @@ class User {
       createdAt: DateTime.parse(map['createdAt']),
       role: map['role'] != null ? UserRole.fromMap(map['role']) : UserRole.user,
       profileImage: map['profileImage'],
-      medicalHistory: map['medicalHistory'] != null ? List<String>.from(map['medicalHistory']) : null,
     );
   }
 }

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flx_market/Core/constants/firestore_collections.dart';
@@ -5,8 +8,6 @@ import 'package:flx_market/Core/error_handling/failure.dart';
 import 'package:flx_market/Core/services/firebase/firebase_auth_helper.dart';
 import 'package:flx_market/Core/services/firebase/firestore_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'dart:io';
-import 'package:cloudinary_public/cloudinary_public.dart';
 
 import '../../domain/entities/user.dart' as domain;
 import '../../domain/entities/user_role.dart' as domain;
@@ -210,7 +211,7 @@ class AuthRepositoryImpl implements AuthRepository {
         try {
           final cloudinary = CloudinaryPublic(
             'dbnbfjeqi',
-            'productsImages', // Reusing existing preset or create a new one if needed? Plan said reuse.
+            'productsImages',
             cache: false,
           );
           CloudinaryResponse response = await cloudinary.uploadFile(

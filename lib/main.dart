@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flx_market/Core/services/service_initializer.dart';
 import 'package:flx_market/Core/constants/nav_colors.dart';
+import 'package:flx_market/Core/services/service_initializer.dart';
 import 'package:flx_market/Services/auth/data/repositories/auth_repository_impl.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_event.dart';
@@ -9,14 +9,14 @@ import 'package:flx_market/Services/home/data/repositories/home_repository_impl.
 import 'package:flx_market/Services/home/presentation/bloc/home_bloc.dart';
 import 'package:flx_market/Services/home/presentation/bloc/home_event.dart';
 import 'package:flx_market/Services/products/data/repositories/products_repository_impl.dart';
+import 'package:flx_market/Services/products/presentation/bloc/add_product_bloc.dart';
 import 'package:flx_market/Services/products/presentation/bloc/products_bloc.dart';
 import 'package:flx_market/Services/products/presentation/bloc/products_event.dart';
-import 'package:flx_market/routes/app_routes.dart';
-import 'package:flx_market/routes/route_constants.dart';
 import 'package:flx_market/Services/wishlist/data/repositories/wishlist_repository_impl.dart';
 import 'package:flx_market/Services/wishlist/presentation/bloc/wishlist_bloc.dart';
 import 'package:flx_market/Services/wishlist/presentation/bloc/wishlist_event.dart';
-import 'package:flx_market/Services/products/presentation/bloc/add_product_bloc.dart';
+import 'package:flx_market/routes/app_routes.dart';
+import 'package:flx_market/routes/route_constants.dart';
 
 import 'bloc_observer.dart';
 
@@ -24,7 +24,6 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceInitializer.initialize();
-  // setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -37,12 +36,8 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => AuthRepositoryImpl()),
         RepositoryProvider(create: (context) => HomeRepositoryImpl()),
-        RepositoryProvider(
-          create: (context) => ProductsRepositoryImpl(),
-        ),
-        RepositoryProvider(
-          create: (context) => WishlistRepositoryImpl(),
-        ),
+        RepositoryProvider(create: (context) => ProductsRepositoryImpl()),
+        RepositoryProvider(create: (context) => WishlistRepositoryImpl()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -53,9 +48,9 @@ class MyApp extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (context) => HomeBloc(
-              homeRepository: context.read<HomeRepositoryImpl>(),
-            )..add(LoadHomeDataEvent()),
+            create: (context) =>
+                HomeBloc(homeRepository: context.read<HomeRepositoryImpl>())
+                  ..add(LoadHomeDataEvent()),
           ),
           BlocProvider(
             create: (context) => ProductsBloc(

@@ -169,7 +169,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       emit(AuthLoading());
-      final result = await _authRepository.updateUserProfile(updatedUser, imageFile: event.imageFile);
+      final result = await _authRepository.updateUserProfile(
+        updatedUser,
+        imageFile: event.imageFile,
+      );
 
       result.fold(
         (failure) => emit(AuthFailure(failure.message)),
