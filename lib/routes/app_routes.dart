@@ -5,6 +5,7 @@ import 'package:flx_market/Services/auth/presentation/pages/register_page.dart';
 import 'package:flx_market/Services/auth/presentation/pages/reset_password_page.dart';
 import 'package:flx_market/Services/auth/presentation/pages/complete_profile_page.dart';
 import 'package:flx_market/Services/home/Presentation/Views/main_page.dart';
+import 'package:flx_market/Services/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:flx_market/Services/splash/presentation/view/splash_view.dart';
 import 'package:flx_market/routes/route_constants.dart';
 
@@ -17,6 +18,11 @@ class AppRouter {
     switch (settings.name) {
       case RouteConstants.splash:
         page = const SplashView();
+        useSlideTransition = false;
+        break;
+
+      case RouteConstants.onboarding:
+        page = const OnboardingPage();
         useSlideTransition = false;
         break;
 

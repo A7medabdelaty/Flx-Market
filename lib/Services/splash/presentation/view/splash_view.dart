@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flx_market/Core/constants/assets_paths.dart';
+import 'package:flx_market/Core/services/local_storage_service.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_event.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_state.dart';
@@ -62,11 +63,17 @@ class _SplashPageState extends State<SplashView>
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is AuthAuthenticated) {
             _handleNavigation(context, RouteConstants.home);
           } else if (state is AuthUnauthenticated) {
-            _handleNavigation(context, RouteConstants.login);
+            final onboardingCompleted =
+                await LocalStorageService.isOnboardingCompleted();
+            if (onboardingCompleted) {
+              _handleNavigation(context, RouteConstants.login);
+            } else {
+              _handleNavigation(context, RouteConstants.onboarding);
+            }
           } else if (state is AuthNeedsRoleSelection) {
             _handleNavigation(context, RouteConstants.completeProfile);
           }
