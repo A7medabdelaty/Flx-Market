@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flx_market/Core/constants/assets_paths.dart';
 import 'package:flx_market/Core/constants/nav_colors.dart';
-import 'package:flx_market/Core/widgets/button_notch.dart';
 import 'package:flx_market/Services/auth/domain/entities/user_role.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_state.dart';
 import 'package:flx_market/Services/home/Presentation/Views/home_view.dart';
+import 'package:flx_market/Services/products/presentation/bloc/products_bloc.dart';
+import 'package:flx_market/Services/products/presentation/bloc/products_event.dart';
 import 'package:flx_market/Services/products/presentation/pages/add_product_page.dart';
 import 'package:flx_market/Services/products/presentation/pages/products_page.dart';
 import 'package:flx_market/Services/profile/presentation/pages/profile_view.dart';
 import 'package:flx_market/Services/wishlist/presentation/pages/wishlist_page.dart';
-import 'package:flx_market/Services/products/presentation/bloc/products_bloc.dart';
-import 'package:flx_market/Services/products/presentation/bloc/products_event.dart';
 
 const TextStyle bntText = TextStyle(
   color: NavColors.navUnselectColor,
@@ -94,7 +93,7 @@ class _MainPageState extends State<MainPage> {
                     builder: (context) => const AddProductPage(),
                   ),
                 );
-                
+
                 if (result == true && context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -158,21 +157,12 @@ class _MainPageState extends State<MainPage> {
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.topCenter,
-            child: AnimatedContainer(
-              height: height,
-              width: width,
-              duration: const Duration(milliseconds: 600),
-              child: isActive
-                  ? CustomPaint(painter: ButtonNotch())
-                  : const SizedBox(),
-            ),
-          ),
-          Align(
             alignment: Alignment.center,
             child: Image.asset(
               icon,
-              color: isActive ? NavColors.navSelectColor : NavColors.navUnselectColor,
+              color: isActive
+                  ? NavColors.navSelectColor
+                  : NavColors.navUnselectColor,
               scale: 2,
             ),
           ),
