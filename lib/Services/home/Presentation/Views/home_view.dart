@@ -113,9 +113,15 @@ class HomeView extends StatelessWidget {
                           ? wishlistState.products.map((p) => p.id).toSet()
                           : <String>{};
 
-                      return ListView.builder(
+                      return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.75,
+                        ),
                         itemCount: state.recommendedProducts.length,
                         itemBuilder: (context, index) {
                           final product = state.recommendedProducts[index];
@@ -134,10 +140,17 @@ class HomeView extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              margin: const EdgeInsets.only(bottom: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.05),
+                                    blurRadius: 8,
+                                    spreadRadius: 0,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,12 +164,12 @@ class HomeView extends StatelessWidget {
                                             ),
                                         child: Image.network(
                                           product.imageUrl,
-                                          height: 200,
+                                          height: 120,
                                           width: double.infinity,
-                                          fit: BoxFit.fitHeight,
+                                          fit: BoxFit.cover,
                                           errorBuilder: (_, __, ___) =>
                                               Container(
-                                                height: 200,
+                                                height: 120,
                                                 color: Colors.grey[200],
                                                 child: const Center(
                                                   child: Icon(
@@ -168,12 +181,12 @@ class HomeView extends StatelessWidget {
                                       ),
                                       if (product.isFeatured)
                                         Positioned(
-                                          bottom: 10,
-                                          left: 10,
+                                          bottom: 8,
+                                          left: 8,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
-                                              horizontal: 8,
-                                              vertical: 4,
+                                              horizontal: 6,
+                                              vertical: 2,
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.amber,
@@ -183,15 +196,15 @@ class HomeView extends StatelessWidget {
                                             child: const Text(
                                               'Featured',
                                               style: TextStyle(
-                                                fontSize: 12,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
                                         ),
                                       Positioned(
-                                        top: 10,
-                                        right: 10,
+                                        top: 8,
+                                        right: 8,
                                         child: WishlistButton(
                                           isFavorite: isFavorite,
                                           onTap: () {
@@ -203,39 +216,50 @@ class HomeView extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          product.location,
-                                          style: TextStyle(
-                                            color: Colors.grey[600],
-                                            fontSize: 12,
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                product.location,
+                                                style: TextStyle(
+                                                  color: Colors.grey[600],
+                                                  fontSize: 10,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              const SizedBox(height: 2),
+                                              Text(
+                                                product.name,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          product.name,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
+                                          Text(
+                                            '\$${product.price.toStringAsFixed(0)}',
+                                            style: TextStyle(
+                                              color: Theme.of(
+                                                context,
+                                              ).primaryColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          '\$${product.price.toStringAsFixed(0)}',
-                                          style: TextStyle(
-                                            color: Theme.of(
-                                              context,
-                                            ).primaryColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
