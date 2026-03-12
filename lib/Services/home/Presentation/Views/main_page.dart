@@ -63,15 +63,31 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildCustomNavBar(bool isVendor, BuildContext context) {
     final items = [
-      _NavItem(0, AssetsPaths.homeIcon, "Home"),
-      _NavItem(1, AssetsPaths.searchIcon, "Product"),
-      if (isVendor) _NavItem(2, AssetsPaths.addIcon, "Add"),
-      _NavItem(isVendor ? 3 : 2, AssetsPaths.heartIcon, "Likes"),
-      _NavItem(isVendor ? 4 : 3, AssetsPaths.profileIcon, "Profile"),
+      _NavItem(0, AssetsPaths.homeIcon, AssetsPaths.homeFilledIcon, "Home"),
+      _NavItem(
+        1,
+        AssetsPaths.searchIcon,
+        AssetsPaths.searchFilledIcon,
+        "Product",
+      ),
+      if (isVendor)
+        _NavItem(2, AssetsPaths.addIcon, AssetsPaths.addIcon, "Add"),
+      _NavItem(
+        isVendor ? 3 : 2,
+        AssetsPaths.heartIcon,
+        AssetsPaths.heartFilledIcon,
+        "Likes",
+      ),
+      _NavItem(
+        isVendor ? 4 : 3,
+        AssetsPaths.profileIcon,
+        AssetsPaths.profileFilledIcon,
+        "Profile",
+      ),
     ];
 
     return Container(
-      height: 70,
+      height: 52,
       decoration: BoxDecoration(
         color: NavColors.navBarColor,
         borderRadius: const BorderRadius.only(
@@ -128,6 +144,7 @@ class _MainPageState extends State<MainPage> {
             child: _buildIconBtn(
               item.index,
               item.icon,
+              item.filledIcon,
               item.label,
               isVendor,
               context,
@@ -141,6 +158,7 @@ class _MainPageState extends State<MainPage> {
   Widget _buildIconBtn(
     int index,
     String icon,
+    String filledIcon,
     String label,
     bool isVendor,
     BuildContext context,
@@ -156,37 +174,14 @@ class _MainPageState extends State<MainPage> {
     }
 
     bool isActive = activeUiIndex == index;
-    double height = isActive ? 60.0 : 0.0;
-    double width = isActive ? 50.0 : 0.0;
 
-    return SizedBox(
-      width: 75,
-      height: 70,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Image.asset(
-              icon,
-              color: isActive
-                  ? NavColors.navSelectColor
-                  : NavColors.navUnselectColor,
-              scale: 2,
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                label,
-                style: isActive
-                    ? bntText.copyWith(color: NavColors.navSelectColor)
-                    : bntText.copyWith(color: NavColors.navUnselectColor),
-              ),
-            ),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+      child: Image.asset(
+        isActive ? filledIcon : icon,
+        width: 26,
+        height: 26,
+        color: isActive ? Colors.black : NavColors.navUnselectColor,
       ),
     );
   }
@@ -195,7 +190,8 @@ class _MainPageState extends State<MainPage> {
 class _NavItem {
   final int index;
   final String icon;
+  final String filledIcon;
   final String label;
 
-  _NavItem(this.index, this.icon, this.label);
+  _NavItem(this.index, this.icon, this.filledIcon, this.label);
 }
