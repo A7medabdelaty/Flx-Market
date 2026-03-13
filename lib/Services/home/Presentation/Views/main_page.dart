@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
         isVendor ? 3 : 2,
         AssetsPaths.heartIcon,
         AssetsPaths.heartFilledIcon,
-        "Likes",
+        "favorites",
       ),
       _NavItem(
         isVendor ? 4 : 3,
@@ -87,7 +87,7 @@ class _MainPageState extends State<MainPage> {
     ];
 
     return Container(
-      height: 52,
+      height: 68,
       decoration: BoxDecoration(
         color: NavColors.navBarColor,
         borderRadius: const BorderRadius.only(
@@ -175,13 +175,29 @@ class _MainPageState extends State<MainPage> {
 
     bool isActive = activeUiIndex == index;
 
+    final color = isActive ? Colors.black : NavColors.navUnselectColor;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-      child: Image.asset(
-        isActive ? filledIcon : icon,
-        width: 26,
-        height: 26,
-        color: isActive ? Colors.black : NavColors.navUnselectColor,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            isActive ? filledIcon : icon,
+            width: 24,
+            height: 24,
+            color: color,
+          ),
+          const SizedBox(height: 3),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
+              color: color,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -41,7 +41,7 @@ class HomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 120,
+                    height: 110,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: state.categories.length,
@@ -60,38 +60,49 @@ class HomeView extends StatelessWidget {
                             );
                           },
                           child: Container(
-                            width: 100,
-                            margin: const EdgeInsets.only(right: 16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  spreadRadius: 1,
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
+                            margin: const EdgeInsets.only(right: 14),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.asset(
-                                  category.iconPath,
-                                  height: 50,
-                                  width: 50,
-                                  errorBuilder: (_, __, ___) =>
-                                      const Icon(Icons.category, size: 40),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  category.name,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
+                                Container(
+                                  width: 61,
+                                  height: 67,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(18),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 0,
+                                        blurRadius: 6,
+                                        offset: const Offset(0, 5),
+                                      ),
+                                    ],
                                   ),
-                                  textAlign: TextAlign.center,
+                                  child: Center(
+                                    child: Image.asset(
+                                      category.iconPath,
+                                      height: 38,
+                                      width: 38,
+                                      errorBuilder: (_, __, ___) =>
+                                          const Icon(Icons.category, size: 32),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                SizedBox(
+                                  width: 61,
+                                  child: Text(
+                                    category.name,
+                                    style: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w700,
+                                      height: 1.2,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ],
                             ),
@@ -116,12 +127,13 @@ class HomeView extends StatelessWidget {
                       return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 0.75,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 0.75,
+                            ),
                         itemCount: state.recommendedProducts.length,
                         itemBuilder: (context, index) {
                           final product = state.recommendedProducts[index];
@@ -222,10 +234,12 @@ class HomeView extends StatelessWidget {
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 product.location,
@@ -291,38 +305,40 @@ class HomeView extends StatelessWidget {
             name = state.user.email.split('@')[0];
           }
         }
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Image.asset(
+              'assets/images/logo.png',
+              height: 40,
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Welcome ,',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                Text(
+                  'Welcome, $name 👋',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[800],
+                  ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      name,
-                      style: TextStyle(fontSize: 20, color: Colors.grey[600]),
-                    ),
-                    const SizedBox(width: 8),
-                    const Text('👋', style: TextStyle(fontSize: 20)),
-                  ],
+                IconButton(
+                  icon: Icon(
+                    Icons.chat_bubble_outline,
+                    color: Colors.grey[600],
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChatWithAdminPage(),
+                      ),
+                    );
+                  },
                 ),
               ],
-            ),
-            IconButton(
-              icon: Icon(Icons.chat_bubble_outline, color: Colors.grey[600]),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChatWithAdminPage(),
-                  ),
-                );
-              },
             ),
           ],
         );
