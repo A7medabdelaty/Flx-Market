@@ -30,6 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
     String name,
     String phone,
     domain.UserRole role,
+    String gender,
   ) async {
     try {
       final result = await _authHelper.signUpWithEmail(email, password);
@@ -45,6 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
           email,
           phone,
           role,
+          gender,
         );
         return Right(result);
       } catch (e) {
@@ -67,6 +69,7 @@ class AuthRepositoryImpl implements AuthRepository {
     String email,
     String phone,
     domain.UserRole role,
+    String gender,
   ) async {
     final user = domain.User(
       id: uid,
@@ -74,6 +77,7 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       phone: phone,
       role: role,
+      gender: gender,
       createdAt: DateTime.now(),
     );
     await _firestoreService.create(
@@ -178,6 +182,7 @@ class AuthRepositoryImpl implements AuthRepository {
         user.email ?? '',
         user.phoneNumber ?? '',
         role,
+        'Not Specified',
       );
       return const Right(null);
     } catch (e) {

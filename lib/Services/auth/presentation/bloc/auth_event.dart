@@ -16,6 +16,7 @@ class AuthSignUpWithEmailEvent extends AuthEvent {
   final String name;
   final String phone;
   final UserRole role;
+  final String gender;
 
   AuthSignUpWithEmailEvent({
     required this.email,
@@ -23,6 +24,7 @@ class AuthSignUpWithEmailEvent extends AuthEvent {
     required this.name,
     required this.phone,
     required this.role,
+    required this.gender,
   });
 }
 

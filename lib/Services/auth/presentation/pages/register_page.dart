@@ -30,6 +30,8 @@ class _RegisterPageState extends BaseAuthPageState<RegisterPage>
   final _passwordController = TextEditingController();
   final _validationService = AuthValidationService();
   UserRole _selectedRole = UserRole.user;
+  String _selectedGender = 'Male';
+  final List<String> _genderOptions = ['Male', 'Female'];
 
   @override
   void dispose() {
@@ -49,33 +51,29 @@ class _RegisterPageState extends BaseAuthPageState<RegisterPage>
       builder: (context, state) {
         return AuthPageContainer(
           heading: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new, size: 18),
                 color: Colors.black,
                 onPressed: () => Navigator.pop(context),
               ),
-              const Expanded(
-                child: Center(
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
+              const Text(
+                'Register',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
-              const SizedBox(width: 40), // Balance the icon button
+              Image.asset(AssetsPaths.logo, height: 40),
             ],
           ),
           child: AuthForm(
             formKey: formKey,
             animation: fadeAnimation,
             children: [
-              Image.asset(AssetsPaths.logo, width: 100, height: 100),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               AuthTextField(
                 controller: _nameController,
                 label: 'Full Name',
@@ -150,6 +148,36 @@ class _RegisterPageState extends BaseAuthPageState<RegisterPage>
                   }
                 },
               ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: _selectedGender,
+                decoration: InputDecoration(
+                  labelText: 'Gender',
+                  filled: true,
+                  fillColor: Colors.grey[50],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(color: Colors.grey.shade200),
+                  ),
+                ),
+                items: _genderOptions.map((gender) {
+                  return DropdownMenuItem(
+                    value: gender,
+                    child: Text(gender),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    setState(() {
+                      _selectedGender = value;
+                    });
+                  }
+                },
+              ),
               const SizedBox(height: 24),
               AuthSubmitButton(
                 state: state,
@@ -163,6 +191,7 @@ class _RegisterPageState extends BaseAuthPageState<RegisterPage>
                         name: _nameController.text,
                         phone: _phoneController.text,
                         role: _selectedRole,
+                        gender: _selectedGender,
                       ),
                     );
                   }

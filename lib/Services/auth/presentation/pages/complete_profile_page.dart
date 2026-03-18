@@ -5,6 +5,7 @@ import 'package:flx_market/Services/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_event.dart';
 import 'package:flx_market/Services/auth/presentation/bloc/auth_state.dart';
 import 'package:flx_market/routes/route_constants.dart';
+import 'package:flx_market/Core/constants/assets_paths.dart';
 
 class CompleteProfilePage extends StatefulWidget {
   const CompleteProfilePage({super.key});
@@ -25,6 +26,12 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Image.asset(AssetsPaths.logo, height: 40),
+          ),
+        ],
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {

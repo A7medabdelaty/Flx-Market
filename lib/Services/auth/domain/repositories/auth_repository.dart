@@ -16,6 +16,7 @@ abstract class AuthRepository {
     String name,
     String phone,
     UserRole role,
+    String gender,
   );
   Future<Either<Failure, void>> signOut();
   Stream<User?> get authStateChanges;

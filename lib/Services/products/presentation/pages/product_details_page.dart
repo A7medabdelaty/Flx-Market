@@ -119,9 +119,9 @@ class ProductDetailsPage extends StatelessWidget {
                             ? 'No description available for this product.' 
                             : product.description,
                         style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[600],
-                          height: 1.5,
+                          fontSize: 18,
+                          color: Colors.grey[800],
+                          height: 1.6,
                         ),
                       ),
                       const SizedBox(height: 100), // Space for bottom bar

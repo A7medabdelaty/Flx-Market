@@ -61,6 +61,12 @@ class _ResetPasswordPageState extends BaseAuthPageState<ResetPasswordPage>
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Image.asset(AssetsPaths.logo, height: 40),
+              ),
+            ],
           ),
           body: Padding(
             padding: const EdgeInsets.all(24.0),

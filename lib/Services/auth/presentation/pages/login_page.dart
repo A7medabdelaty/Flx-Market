@@ -112,27 +112,12 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
                 },
               ),
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Password',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      RouteConstants.resetPassword,
-                    ),
-                    child: Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Password',
+                  style: TextStyle(color: Colors.black87),
+                ),
               ),
               const SizedBox(height: 8),
               AuthTextField(
@@ -145,6 +130,23 @@ class _LoginPageState extends BaseAuthPageState<LoginPage>
                   }
                   return null;
                 },
+              ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    RouteConstants.resetPassword,
+                  ),
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 24),
               Row(

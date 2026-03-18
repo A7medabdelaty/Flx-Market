@@ -103,6 +103,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       event.name,
       event.phone,
       event.role,
+      event.gender,
     );
 
     await result.fold(
