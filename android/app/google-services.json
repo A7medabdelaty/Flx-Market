@@ -1,45 +1,37 @@
 {
   "project_info": {
-    "project_number": "713792125410",
-    "project_id": "flxmarket",
-    "storage_bucket": "flxmarket.firebasestorage.app"
+    "project_number": "260559848797",
+    "project_id": "flxmarket-6664b",
+    "storage_bucket": "flxmarket-6664b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:713792125410:android:460aef28f6723a752ba1bb",
+        "mobilesdk_app_id": "1:260559848797:android:760de78e9d9c28bbe4d4b4",
         "android_client_info": {
           "package_name": "com.example.flx_market"
         }
       },
       "oauth_client": [
         {
-          "client_id": "713792125410-bc24t80flnf689eleigsbooa6obhncpg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.flx_market",
-            "certificate_hash": "95d66bf2683f3452f0434c406e46220b6af699af"
-          }
-        },
-        {
-          "client_id": "713792125410-gjt1v7je90f76rs4rmjlpvte8rmp9rd2.apps.googleusercontent.com",
+          "client_id": "260559848797-a8j57s8l5urv27ri9uubfjjp5ji1d6bi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDBz9W__2uoMbiRshIAEOq12TgM7A8RfpQ"
+          "current_key": "AIzaSyAI3jygwiR_eo7Q3TJejvM3ByJAL1xirBk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "713792125410-gjt1v7je90f76rs4rmjlpvte8rmp9rd2.apps.googleusercontent.com",
+              "client_id": "260559848797-a8j57s8l5urv27ri9uubfjjp5ji1d6bi.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "713792125410-omb21pmidd4e35okvh0s8rgasppuoqjq.apps.googleusercontent.com",
+              "client_id": "260559848797-uh8btimkrt34v6m1ha2iuk62a8l244tp.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.flxMarket"

@@ -55,10 +55,9 @@ class AuthRepositoryImpl implements AuthRepository {
           ServerFailure('Failed to create user profile: ${e.toString()}'),
         );
       }
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.readableMessage));
     } catch (e) {
-      if (e is FirebaseAuthException) {
-        return Left(ServerFailure(e.message ?? 'Authentication failed'));
-      }
       return Left(ServerFailure(e.toString()));
     }
   }
@@ -101,6 +100,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final result = await _authHelper.signInWithEmail(email, password);
       return Right(result);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.readableMessage));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -157,7 +158,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(e.message ?? 'Firebase auth error'));
+      return Left(ServerFailure(e.readableMessage));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -254,9 +255,7 @@ class AuthRepositoryImpl implements AuthRepository {
       print('Password reset email sent successfully');
       return const Right(null);
     } on FirebaseAuthException catch (e) {
-      return Left(
-        ServerFailure(e.message ?? 'Failed to send password reset email'),
-      );
+      return Left(ServerFailure(e.readableMessage));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

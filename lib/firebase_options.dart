@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -47,19 +44,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDBz9W__2uoMbiRshIAEOq12TgM7A8RfpQ',
-    appId: '1:713792125410:android:460aef28f6723a752ba1bb',
-    messagingSenderId: '713792125410',
-    projectId: 'flxmarket',
-    storageBucket: 'flxmarket.firebasestorage.app',
+    apiKey: 'AIzaSyAI3jygwiR_eo7Q3TJejvM3ByJAL1xirBk',
+    appId: '1:260559848797:android:760de78e9d9c28bbe4d4b4',
+    messagingSenderId: '260559848797',
+    projectId: 'flxmarket-6664b',
+    storageBucket: 'flxmarket-6664b.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBX_6YW8Wb_mCs-OJw7fUCWrqMuNUyJ1TQ',
-    appId: '1:713792125410:ios:7dde858f60a298bb2ba1bb',
-    messagingSenderId: '713792125410',
-    projectId: 'flxmarket',
-    storageBucket: 'flxmarket.firebasestorage.app',
+    apiKey: 'AIzaSyCwLQ4OX8sWLctAbBwPbPCvLPqVNv7__6A',
+    appId: '1:260559848797:ios:52c79168db4d8ce8e4d4b4',
+    messagingSenderId: '260559848797',
+    projectId: 'flxmarket-6664b',
+    storageBucket: 'flxmarket-6664b.firebasestorage.app',
+    iosClientId: '260559848797-uh8btimkrt34v6m1ha2iuk62a8l244tp.apps.googleusercontent.com',
     iosBundleId: 'com.example.flxMarket',
   );
 
@@ -72,4 +70,15 @@ class DefaultFirebaseOptions {
     storageBucket: 'service-reservation-system.firebasestorage.app',
     measurementId: 'G-J7PCKF42KV',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyABydUu63sPTiI5D8X4HhDigh1pVRYlUDI',
+    appId: '1:260559848797:web:0b73bcb3254795b4e4d4b4',
+    messagingSenderId: '260559848797',
+    projectId: 'flxmarket-6664b',
+    authDomain: 'flxmarket-6664b.firebaseapp.com',
+    storageBucket: 'flxmarket-6664b.firebasestorage.app',
+    measurementId: 'G-70JLJN6SCC',
+  );
+
 }
